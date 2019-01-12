@@ -67,7 +67,7 @@ const dataLoader = new DataLoader(keys => {
   );
 });
 
-// clear cache every 2 hours
+// clear cache every 5 seconds
 setInterval(() => {
   dataLoader.clearAll();
-}, 1000 * 60 * 60 * 2);
+}, 1000 * 5);

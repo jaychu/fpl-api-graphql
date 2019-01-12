@@ -26,7 +26,7 @@ export interface Entry {
     summaryOverallPoints?: number;
     summaryOverallRank?: number;
     summaryEventPoints?: number;
-    summaryEventRank?: number;
+    summaryEventRank?: null;
     joinedSeconds?: number;
     currentEvent?: number;
     totalTransfers?: number;
@@ -57,7 +57,7 @@ export interface Entry {
       entryRank?: number;
       entryLastRank?: number;
       entryMovement?: string;
-      entryChange?: number | null;
+      entryChange?: null;
       entryCanLeave?: boolean;
       entryCanAdmin?: boolean;
       entryCanInvite?: boolean;
@@ -94,8 +94,8 @@ export interface Entry {
     movement?: string;
     points?: number;
     totalPoints?: number;
-    rank?: number;
-    rankSort?: number;
+    rank?: number | null;
+    rankSort?: number | null;
     overallRank?: number;
     targets?: null;
     eventTransfers?: number;

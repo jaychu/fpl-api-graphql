@@ -1,6 +1,6 @@
 # fpl-api-graphql
 
-A GraphQL node wrapper for the Fantasy Premier League (fantasy.premierleague.com) REST apis.
+A fork of Thomas Grey's GraphQL node wrapper for the Fantasy Premier League (fantasy.premierleague.com) REST apis. Note that my caching time is reduced from 2 hours to 5 seconds and there will be other definitions and resolvers built specific for my own custom application. 
 
 [![npm](https://img.shields.io/npm/v/fpl-api-graphql.svg)](https://www.npmjs.com/package/fpl-api-graphql)
 

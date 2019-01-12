@@ -78,7 +78,7 @@ type Entry {
   summaryOverallPoints: Float
   summaryOverallRank: Float
   summaryEventPoints: Float
-  summaryEventRank: Float
+  summaryEventRank: String
   joinedSeconds: Float
   currentEvent: Float
   totalTransfers: Float
@@ -121,8 +121,8 @@ type EntryHistory {
   movement: String
   points: Float
   totalPoints: Float
-  rank: Float
-  rankSort: Float
+  rank: String
+  rankSort: String
   overallRank: Float
   targets: String
   eventTransfers: Float
