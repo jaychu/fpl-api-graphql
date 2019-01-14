@@ -78,7 +78,7 @@ type Entry {
   summaryOverallPoints: Float
   summaryOverallRank: Float
   summaryEventPoints: Float
-  summaryEventRank: String
+  summaryEventRank: Float
   joinedSeconds: Float
   currentEvent: Float
   totalTransfers: Float
@@ -121,8 +121,8 @@ type EntryHistory {
   movement: String
   points: Float
   totalPoints: Float
-  rank: String
-  rankSort: String
+  rank: Float
+  rankSort: Float
   overallRank: Float
   targets: String
   eventTransfers: Float
@@ -192,6 +192,76 @@ type EntryLeaguesClassic {
   reprocessStandings: Boolean
   adminEntry: String
   startEvent: Float
+}
+
+type EntryPicks {
+  activeChip: String
+  automaticSubs: [String]
+  entryHistory: EntryPicksEntryHistory
+  event: EntryPicksEvent
+  picks: [EntryPicksPick]
+}
+
+type EntryPicksEntryHistory {
+  id: Float
+  movement: String
+  points: Float
+  totalPoints: Float
+  rank: Float
+  rankSort: Float
+  overallRank: Float
+  targets: String
+  eventTransfers: Float
+  eventTransfersCost: Float
+  value: Float
+  pointsOnBench: Float
+  bank: Float
+  entry: Float
+  event: Float
+}
+
+type EntryPicksEvent {
+  id: Float
+  name: String
+  deadlineTime: String
+  averageEntryScore: Float
+  finished: Boolean
+  dataChecked: Boolean
+  highestScoringEntry: Float
+  deadlineTimeEpoch: Float
+  deadlineTimeGameOffset: Float
+  deadlineTimeFormatted: String
+  highestScore: Float
+  isPrevious: Boolean
+  isCurrent: Boolean
+  isNext: Boolean
+}
+
+type EntryPicksPick {
+  element: Float
+  position: Float
+  isCaptain: Boolean
+  isViceCaptain: Boolean
+  multiplier: Float
+  yellowCards: Float
+  ownGoals: Float
+  creativity: Float
+  goalsConceded: Float
+  bonus: Float
+  redCards: Float
+  saves: Float
+  influence: Float
+  bps: Float
+  cleanSheets: Float
+  assists: Float
+  ictIndex: Float
+  goalsScored: Float
+  threat: Float
+  penaltiesMissed: Float
+  totalPoints: Float
+  penaltiesSaved: Float
+  inDreamteam: Boolean
+  minutes: Float
 }
 
 type EntrySeason {
@@ -313,6 +383,7 @@ type Query {
   teams: [Team]
   elementTypes: [ElementType]
   entry(id: Int): Entry
+  entryPicks(id: Int, event: Int): EntryPicks
   leagues: Leagues
 }
 

@@ -1,4 +1,4 @@
-import { bootstrapLoader, entryLoader, entryPicksLoader, entryTransfersLoader, eventLiveLoader, leagueClassicLoader } from './dataloaders';
+import { bootstrapLoader, entryLoader,entryPicksManualLoader, eventManualLiveLoader,entryPicksLoader, entryTransfersLoader, eventLiveLoader, leagueClassicLoader } from './dataloaders';
 
 export const resolvers = {
   Query: {
@@ -35,6 +35,21 @@ export const resolvers = {
         season: response.season,
         leagues: response.leagues,
       };
+    },
+    async entryPicks(obj, args, context){
+      const [entryPick, eventData] = await Promise.all([
+        entryPicksManualLoader(args.id,args.event),
+        eventManualLiveLoader(args.event),
+      ]);
+        return {
+          ...entryPick,
+          picks: entryPick.picks.map(pick => {
+            return {
+              ...pick,
+              ...eventData.elements[pick.element].stats,
+            };
+          }),
+        };
     },
     async leagues(obj, args, context) {
       return true;

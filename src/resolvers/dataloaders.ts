@@ -39,6 +39,13 @@ export function entryTransfersLoader(id): Promise<EntryTransfers> {
   return dataLoader.load(`/entry/${id}/transfers`);
 }
 
+export function entryPicksManualLoader(id,event): Promise<EntryPicks> {
+  return dataLoader.load(`/entry/${id}/event/${event}/picks`);
+}
+export function eventManualLiveLoader(event): Promise<EventLive> {
+  return dataLoader.load(`/event/${event}/live`);
+}
+
 export function entryPicksLoader(entry: Entry): Promise<EntryPicks[]> {
   const keys = entry.history.map(item => {
     return `/entry/${entry.id}/event/${item.event}/picks`;

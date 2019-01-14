@@ -48,6 +48,13 @@ Promise.all([
             id: { type: GraphQLInt },
           },
         },
+        entryPicks: {
+          type: buildLiveSchema(entryPicks, eventLive, 'entryPicks'),
+          args: {
+            id: { type: GraphQLInt },
+            event: {type: GraphQLInt}
+          },
+        },
         leagues: {
           type: new GraphQLObjectType({
             name: 'Leagues',
@@ -74,6 +81,29 @@ Promise.all([
 
 function buildSchema(response: any, name: string) {
   const jsonSchema = schemify(response);
+  return parse(name, jsonSchema);
+}
+
+function buildLiveSchema(
+  entryPicks: EntryPicks,
+  eventLive: EventLive,
+  name: string
+){
+  let picks;
+  if (entryPicks.picks) {
+    if (eventLive && eventLive.elements) {
+      const element1 = eventLive.elements['1'];
+      picks = entryPicks.picks.map(pick => {
+        return { ...pick, ...element1.stats };
+      });
+    }
+  }
+  const parsedJson = {
+    ...entryPicks,
+    picks:picks
+  };
+
+  const jsonSchema = schemify(parsedJson);
   return parse(name, jsonSchema);
 }
 
